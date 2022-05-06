@@ -1,0 +1,73 @@
+{
+	"info": {
+		"_postman_id": "3984157c-024e-4326-b899-453e76331fd7",
+		"name": "Червякова Н.А. Peshkariki",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"// console.log(jsonData.response.token)\r",
+							"\r",
+							"pm.test(\"Проверка наличия конкретного токена\", function(){\r",
+							"    pm.expect(jsonData.response.token).to.eql(\"3337912533qshF98bwq8k\"); \r",
+							"});\r",
+							"\r",
+							"function isEmpty(str) {\r",
+							"  if (str.trim() == '') \r",
+							"    return true;\r",
+							"    \r",
+							"  return false;\r",
+							"}\r",
+							"\r",
+							"pm.test(\"Проверка наличия токена\", function(){\r",
+							"    pm.expect(false).to.eql(isEmpty(jsonData.response.token)); \r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \t\"login\":\"{{login}}\",\r\n     \t\"password\": \"{{password}}\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://test-api.peshkariki.ru/commonApi/login",
+					"protocol": "https",
+					"host": [
+						"test-api",
+						"peshkariki",
+						"ru"
+					],
+					"path": [
+						"commonApi",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
